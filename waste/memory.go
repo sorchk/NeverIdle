@@ -1,8 +1,9 @@
 package waste
 
-import "math/rand"
+import "crypto/rand"
 
-var Buffers []*GiBObject
+var Buffers []*MiBObject
+var GBuffers []*GiBObject
 
 const (
 	KiB = 1024
@@ -10,16 +11,19 @@ const (
 	GiB = 1024 * MiB
 )
 
+type MiBObject struct {
+	B [MiB]byte
+}
 type GiBObject struct {
 	B [GiB]byte
 }
 
-func Memory(gib int) {
-	Buffers = make([]*GiBObject, 0, gib)
-	for gib > 0 {
-		o := new(GiBObject)
+func Memory(mib int) {
+	Buffers = make([]*MiBObject, 0, mib)
+	for mib > 0 {
+		o := new(MiBObject)
 		rand.Read(o.B[:])
 		Buffers = append(Buffers, o)
-		gib -= 1
+		mib -= 1
 	}
 }

@@ -1,8 +1,8 @@
 package waste
 
 import (
+	"crypto/rand"
 	"log"
-	"math/rand"
 	"runtime"
 	"time"
 
@@ -42,8 +42,8 @@ func newMachine(maxStep float64) *machine {
 
 func (m *machine) Run() {
 	var buffer []byte
-	if len(Buffers) > 0 {
-		buffer = Buffers[0].B[:4*MiB]
+	if len(GBuffers) > 0 {
+		buffer = GBuffers[0].B[:4*MiB]
 	} else {
 		buffer = make([]byte, 4*MiB)
 	}

@@ -12,7 +12,8 @@ import (
 
 func Network(interval time.Duration, connectionCount int) {
 	cache := false
-	speedtest.GlobalDataManager.SetNThread(connectionCount)
+	dm := speedtest.NewDataManager()
+	dm.SetNThread(connectionCount)
 	var targets speedtest.Servers
 	for {
 		if !cache {
@@ -60,7 +61,7 @@ func Network(interval time.Duration, connectionCount int) {
 
 		fmt.Println("[NETWORK] SpeedTest Ping:", s.Latency, ", Download:", s.DLSpeed, ", Upload:", s.ULSpeed, "mainServer", s.String())
 
-		speedtest.GlobalDataManager.Reset()
+		dm.Reset()
 		runtime.GC()
 		time.Sleep(interval)
 	}

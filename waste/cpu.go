@@ -1,8 +1,8 @@
 package waste
 
 import (
+	"crypto/rand"
 	"fmt"
-	"math/rand"
 	"time"
 
 	"golang.org/x/crypto/chacha20"
@@ -10,8 +10,8 @@ import (
 
 func CPU(interval time.Duration) {
 	var buffer []byte
-	if len(Buffers) > 0 {
-		buffer = Buffers[0].B[:4*MiB]
+	if len(GBuffers) > 0 {
+		buffer = GBuffers[0].B[:4*MiB]
 	} else {
 		buffer = make([]byte, 4*MiB)
 	}
