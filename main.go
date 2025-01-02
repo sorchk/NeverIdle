@@ -23,7 +23,9 @@ var (
 )
 
 func main() {
-	rand.Seed(time.Now().UnixNano())
+	rand.New(rand.NewSource(time.Now().UnixNano()))
+
+	// rand.Seed(time.Now().UnixNano())
 	fmt.Println("NeverIdle", Version, "- Getting worse from here.")
 	fmt.Println("Platform:", runtime.GOOS, ",", runtime.GOARCH, ",", runtime.Version())
 	fmt.Println("GitHub: https://github.com/layou233/NeverIdle")

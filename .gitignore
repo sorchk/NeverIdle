@@ -16,3 +16,5 @@ atlassian-ide-plugin.xml
 *.out
 *.linux-amd64
 *.linux-arm64
+docker/dist/nidle_amd64
+docker/dist/nidle_arm64
